@@ -7,15 +7,21 @@ date:2019.3.10
 '''
 
 
-import os
+import os,sys
 from messageboard import app
 
 #配置数据库地址
-dev_db = "sqlite:///"+os.path.join(os.path.dirname(app.root_path),'data.db')
+dev_db = "sqlite:////"+os.path.join(os.path.dirname(app.root_path),'data.db')
+WIN = sys.platform.startswith('win')
+if WIN:
+    prefix = 'sqlite:///'
+else:
+    prefix = 'sqlite:////'
 
-#配置密匙
-SECRET_KEY = os.getenv('SECRET_KEY','secert string')
 
+dev_db = prefix + os.path.join(os.path.dirname(app.root_path), 'data.db')
+
+SECRET_KEY = os.getenv('SECRET_KEY', 'secret string')
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URI', dev_db)
 
-SQLALCHEMY_DATABASE_URL = os.getenv('DATABASE_URL',dev_db)

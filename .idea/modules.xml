@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://D:/helloflask-master/.idea/helloflask-master.iml" filepath="D:/helloflask-master/.idea/helloflask-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/newP.iml" filepath="$PROJECT_DIR$/.idea/newP.iml" />
+      <module fileurl="file://D:/sayhello-master/.idea/sayhello-master.iml" filepath="D:/sayhello-master/.idea/sayhello-master.iml" />
+    </modules>
+  </component>
+</project>

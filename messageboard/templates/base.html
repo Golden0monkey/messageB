@@ -1,0 +1,68 @@
+<!--自定义的基模板，从bootstrap/bases复制修改-->
+
+{% block doc -%}
+<!DOCTYPE html>
+
+<html{% block html_attribs %}{% endblock html_attribs %}>
+{%- block html %}
+  <head>
+    {%- block metas %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {%- endblock metas %}
+
+    {%- block head %}
+    <title>{% block title %}MessageBoard{% endblock title %}</title>
+
+    {%- block styles %}
+    <!-- Bootstrap
+    <link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet">
+    <link href="{{bootstrap_find_resource('css/fontawesome-all.css', cdn='bootstrap')}}" rel="stylesheet">-->
+      <!---->
+    <link href="{{url_for('static',filename='css/bootstrap.css')}}" rel="text/css">
+    <link href="{{url_for('static',filename='css/fontawesome-all.css')}}" rel="text/css">
+      <!---->
+    {%- endblock styles %}
+    {%- endblock head %}
+  </head>
+  <body{% block body_attribs %}{% endblock body_attribs %}>
+    {% block body -%}
+    {% block navbar %}
+    {%- endblock navbar %}
+        <header>
+        <h1 class="text-center display-4">
+            <a href="{{url_for('index')}}" class="text-success"><strong>Messageboard</strong></a>
+            <small style="font-size:24px" class="text-muted">to the world</small>
+        </h1>
+        </header>
+        {% for message in get_flashed_messages() %}
+        <div class="alert-info">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+        {% endfor %}
+
+    {% block content -%}
+    {%- endblock content %}
+
+<footer class="text-center">
+    {% block footer %}
+    <p><a id="bottom" href="#" title="Go Top">&uarr;</a> </p>
+</footer>
+
+    {% block scripts %}
+<!--
+    <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
+    <script src="{{bootstrap_find_resource('umd/popper.js', cdn='popper')}}"></script>
+    <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
+    -->
+    <script type="text/javascript" src="{{url_for('static','jquery.js')}}"></script>
+    <script src="text/javascript" src="{{url_for('static','umd/popper.js')}}"></script>
+    <script src="text/javascript" src="{{url_for('static','js/bootstrap.js')}}"></script>
+    {%- endblock scripts %}
+    {%- endblock body %}
+  </body>
+{%- endblock html %}
+</html>
+{% endblock doc -%}
