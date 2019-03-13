@@ -1,0 +1,58 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block title %}MessageBoard{% endblock title %}
+
+    {% block content -%}
+    <header>
+        <h1 class="text-center display-4">
+            <a href="{{ url_for('index') }}" class="text-success"><strong>Say Hello</strong></a>
+            <small class="text-muted sub-title">to the world</small>
+        </h1>
+    </header>
+
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+    {% endfor %}
+
+
+
+    {{ wtf.quick_form(form) }}
+<!--
+<h5>{{ message|length }}messages
+    <small class="float-right">
+        <a href="#bottom" title="Go Bottom">&darr;</a>
+    </small>
+</h5>-->
+    <div class="list_group">
+        {% for message in messages %}
+        <a class="list-group-item list-group-item-actionflex-column">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-success">{{  message.name  }}
+                <small class="text-muted">
+                    #{{loop.revindex}}
+                </small>
+                </h5>
+                <small>
+                    {{ message.timestamp.strftime('%Y/%m/%d %h:%m') }}
+                </small>
+            </div>
+            <p class="mb-1">{{ message.body }}</p>
+        </a>
+        {% endfor %}
+    </div>
+
+    <footer class="text-center">
+        {% block footer %}
+            <small> &copy; 2019
+                <a href="https://github.com/Golden0monkey/newP" >GitHub</a> /
+                <a href="http://helloflask.com" title="A HelloFlask project">HelloFlask</a>
+            </small>
+            <p><a id="bottom" href="#" title="Go Top">&uarr;</a></p>
+        {% endblock %}
+    </footer>
+    {%- endblock content %}
