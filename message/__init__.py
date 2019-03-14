@@ -10,9 +10,13 @@ date:2019.3.13
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask('message')
 bootstrap = Bootstrap(app)
 moment = Moment(app)
 
 app.config.from_pyfile('nconfig.py')#载入配置文件
+
+db = SQLAlchemy(app)
+
